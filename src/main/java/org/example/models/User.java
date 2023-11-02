@@ -14,10 +14,21 @@ public class User {
     private String username;
     private String email;
     private String password;
+
+    public User() {
+    }
+
     private boolean is_driver;
 
     public User(int user_id, String username, String email, String password, boolean is_driver) {
         this.user_id = user_id;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.is_driver = is_driver;
+    }
+
+    public User(String username, String email, String password, boolean is_driver) {
         this.username = username;
         this.email = email;
         this.password = password;

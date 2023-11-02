@@ -10,8 +10,19 @@ public class Trip {
     private String time;
     private int driver_id;
 
+    public Trip() {
+    }
+
     public Trip(int trip_id, String from_location, String to_destination, Date date, String time, int driver_id) {
         this.trip_id = trip_id;
+        this.from_location = from_location;
+        this.to_destination = to_destination;
+        this.date = date;
+        this.time = time;
+        this.driver_id = driver_id;
+    }
+
+    public Trip(String from_location, String to_destination, Date date, String time, int driver_id) {
         this.from_location = from_location;
         this.to_destination = to_destination;
         this.date = date;

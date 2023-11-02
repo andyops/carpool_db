@@ -14,6 +14,15 @@ public class Booking {
         this.booking_status = booking_status;
     }
 
+    public Booking(int user_id, int trip_id, String booking_status) {
+        this.user_id = user_id;
+        this.trip_id = trip_id;
+        this.booking_status = booking_status;
+    }
+
+    public Booking() {
+    }
+
     public int getBooking_id() {
         return booking_id;
     }

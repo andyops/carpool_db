@@ -19,6 +19,16 @@ public class Car {
         return car_id;
     }
 
+    public Car(int driver_id, String make, String model, int year) {
+        this.driver_id = driver_id;
+        this.make = make;
+        this.model = model;
+        this.year = year;
+    }
+
+    public Car() {
+    }
+
     public void setCar_id(int car_id) {
         this.car_id = car_id;
     }
