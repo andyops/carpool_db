@@ -1,2 +1,5 @@
-package org.example.models;public class UserPreferences {
+package org.example.models;
+
+public class UserPreferences {
+
 }
