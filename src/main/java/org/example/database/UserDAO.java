@@ -34,6 +34,39 @@ public class UserDAO {
         }
     }
 
+    public boolean updateUser(User user) {
+        String query = "UPDATE User SET username = ?, email = ?, password = ?, is_driver = ? WHERE user_id = ?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setString(1, user.getUsername());
+            preparedStatement.setString(2, user.getEmail());
+            preparedStatement.setString(3, user.getPassword());
+            preparedStatement.setBoolean(4, user.isIs_driver());
+            preparedStatement.setInt(5, user.getUser_id());
+
+            int affectedRows = preparedStatement.executeUpdate();
+            return affectedRows > 0;
+        } catch (SQLException e) {
+            // Log or handle the exception
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean updateUserDriver(User user) {
+        String query = "UPDATE User SET is_driver = ? WHERE user_id = ?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setBoolean(1, user.isIs_driver());
+            preparedStatement.setInt(2, user.getUser_id());
+
+            int affectedRows = preparedStatement.executeUpdate();
+            return affectedRows > 0;
+        } catch (SQLException e) {
+            // Log or handle the exception
+            e.printStackTrace();
+            return false;
+        }
+    }
+
     public User getUserById(int userId) {
         String query = "SELECT * FROM User WHERE user_id = ?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -48,6 +81,24 @@ public class UserDAO {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public int validateUser(String username, String password) {
+        String query = "SELECT * FROM User WHERE username = ? AND password = ?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, password);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                //return user_id
+                return resultSet.getInt("user_id");
+            }
+        } catch (SQLException e) {
+            // Log or handle the exception
+            e.printStackTrace();
+        }
+        return -1;
     }
 
     public List<User> getAllUsers() {
